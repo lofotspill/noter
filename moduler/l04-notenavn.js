@@ -22,6 +22,11 @@ Leksjoner.registrer({
     const cLav = Noter.toneTilPos('C', baseOkt, c.clef);
     const cHoy = Noter.toneTilPos('C', baseOkt + 1, c.clef);
 
+    // fem plasser rundt fastpunktet: første steg før alle ni
+    const lo = Math.max(0, ref - 2), hi = Math.min(8, ref + 2);
+    const naboer = [];
+    for (let p = lo; p <= hi; p++) naboer.push({ pos: p, label: Noter.bokstav(p, c.clef), tilstand: p === ref ? 'ok' : 'normal' });
+
     const huskeregel = c.clef === 'G'
       ? '<p><b>Linjene</b> (nedenfra): <b>E – G – H – D – F</b>. Forslag til huskesetning: «<i>Ei Gammel Havørn Dykker Fort</i>».</p>' +
         '<p><b>Mellomrommene</b> (nedenfra): <b>F – A – C – E</b> – det blir ordet «face».</p>'
@@ -53,11 +58,12 @@ Leksjoner.registrer({
           visuelle: [{ type: 'noter', noter: [{ pos: cLav, label: 'C' }, { pos: cHoy, label: 'C' }], spill: true, bredde: 340, steg: 0.9 }]
         },
         {
-          type: 'info', tittel: 'Tonenavn i notesystemet',
+          type: 'info', tittel: 'Start med fastpunktet og naboene',
           html:
-            '<p>I notesystemet følger navnene samme rekke: <b>linje, mellomrom, linje, mellomrom …</b> – ett trinn i alfabetet for hver plass oppover. Under ser du alle ni plassene med navn i din nøkkel (' + navn + '). Trykk «Spill av» og hør dem stige.</p>',
-          visuelle: [{ type: 'noter', noter: alle, spill: true, bredde: 640, gap: 58, skala: 1.0, steg: 0.5 }],
-          etter: '<div class="merk">' + huskeregel + '<p class="dempet">Lag gjerne din egen huskesetning – den du lager selv, sitter best.</p></div>'
+            '<p>Du trenger ikke å lære ni plasser på én gang. Vi begynner smått: fastpunktet fra nøkkelen (<b>' + refB + '</b>) og plassene som ligger nærmest.</p>' +
+            '<p>Plassene følger tonerekken <b>C D E F G A H</b>: ett trinn videre i rekken for hver plass oppover (linje, mellomrom, linje …). Under ser du fem plasser rundt fastpunktet. Den grønne er ' + refB + '. Trykk «Spill av» og hør dem stige.</p>',
+          visuelle: [{ type: 'noter', noter: naboer, spill: true, bredde: 460, gap: 62, skala: 1.0, steg: 0.5 }],
+          etter: '<div class="merk">Øv først på bare disse fem plassene. Resten legger vi til etterpå.</div>'
         },
         {
           type: 'eksempel', tittel: 'Slik leser du navnet på en note',
@@ -73,9 +79,21 @@ Leksjoner.registrer({
           ]
         },
         {
-          type: 'ovelse', modus: 'veiledet', tittel: 'Tonenavn: veiledet',
-          intro: '<p>Først litt øving med tonerekken, så noter. Du får et hint som viser veien fra fastpunktet.</p>',
-          oppgaver: [].concat(G.alfabet(2), G.velgNavn(2, c.clef, 0, 8), G.navn(3, c.clef, 0, 8))
+          type: 'ovelse', modus: 'veiledet', tittel: 'Tonenavn: nær fastpunktet',
+          intro: '<p>Først bare plassene rundt fastpunktet ' + refB + '. Du får hint som viser veien.</p>',
+          oppgaver: [].concat(G.alfabet(2), G.velgNavn(2, c.clef, lo, hi), G.navn(3, c.clef, lo, hi))
+        },
+        {
+          type: 'info', tittel: 'Alle ni plasser',
+          html:
+            '<p>Nå legger vi til resten. Samme regel hele veien: ett trinn videre i rekken for hver plass. Under ser du alle ni plassene med navn i din nøkkel (' + navn + ').</p>',
+          visuelle: [{ type: 'noter', noter: alle, spill: true, bredde: 640, gap: 58, skala: 1.0, steg: 0.5 }],
+          etter: '<div class="merk">' + huskeregel + '<p class="dempet">Lag gjerne din egen huskesetning – den du lager selv, sitter best.</p></div>'
+        },
+        {
+          type: 'ovelse', modus: 'veiledet', tittel: 'Tonenavn: hele systemet',
+          intro: '<p>Nå med alle ni plasser. Fortsatt med hint om du bommer.</p>',
+          oppgaver: [].concat(G.velgNavn(2, c.clef, 0, 8), G.navn(3, c.clef, 0, 8))
         },
         {
           type: 'ovelse', modus: 'selvstendig', tittel: 'Tonenavn: alene',

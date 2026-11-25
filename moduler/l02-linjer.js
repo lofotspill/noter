@@ -15,7 +15,8 @@ Leksjoner.registrer({
           type: 'info', tittel: 'Notesystemet',
           html:
             '<p>Noter skrives på et <span class="begrep">notesystem</span>: <b>fem linjer</b> med <b>fire mellomrom</b> mellom dem. Både linjene og mellomrommene er plasser en note kan stå – til sammen ni plasser.</p>' +
-            '<p>Vi teller alltid <b>nedenfra og opp</b>: den nederste linjen er <b>1. linje</b>, mellomrommet over den er <b>1. mellomrom</b>, så kommer 2. linje, og så videre. Du ser alle ni plassene med navn under (linjer til høyre, mellomrom i midten).</p>',
+            '<p>Vi teller alltid <b>nedenfra og opp</b>: den nederste linjen er <b>1. linje</b>, mellomrommet over den er <b>1. mellomrom</b>, så kommer 2. linje, og så videre. Du ser alle ni plassene med navn under.</p>' +
+            '<p class="dempet">Tegnet helt til venstre er nøkkelen. Den forklarer vi i neste leksjon – foreløpig teller vi bare plasser.</p>',
           visuelle: [{ type: 'noter', noter: [], posEtiketter: true, bredde: 500, klav: true, skala: 1.2 }],
           etter: '<p class="dempet">Husk: <b>nedenfra og opp</b>. Det er det mest vanlige feilsteget i begynnelsen.</p>'
         },

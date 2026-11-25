@@ -38,18 +38,19 @@ Leksjoner.registrer({
             ] }
           ],
           etter:
-            '<div class="merk"><b>Det du ser først er retning:</b> opp eller ned. Hvilken tone det er, lærer du i leksjon 4. Nå handler det om å <i>se</i> og <i>høre</i> at de henger sammen.</div>'
+            '<div class="merk"><b>Det du ser først er retning:</b> opp eller ned. Hvilken tone det er, lærer du i leksjon 4. Nå handler det om å <i>se</i> og <i>høre</i> at de henger sammen.</div>' +
+            '<p class="dempet">Tegnet helt til venstre på linjene kalles en <b>nøkkel</b>. Den forklarer vi i leksjon 3 – foreløpig kan du la den være.</p>'
         },
         {
           type: 'eksempel', tittel: 'Slik leser du retning',
           trinn: [
-            { tekst: '<p>Vi starter enkelt. To noter – hvilken klinger høyest?</p><p>Sammenlign hvor høyt oppe <b>notehodene</b> (de runde delene) sitter.</p>',
+            { tekst: '<p>Vi starter enkelt. To noter – hvilken klinger høyest?</p><p>Sammenlign hvor høyt oppe <b>notehodene</b> sitter. Notehodet er den runde, fylte delen av noten.</p>',
               visuell: { type: 'noter', noter: [{ pos: 2 }, { pos: 5 }], spill: true, bredde: 260 } },
             { tekst: '<p>Den <b>andre</b> noten sitter høyere opp enn den første, så den andre tonen er høyere. Hør etter.</p><p>Størrelse, farge eller halsen på noten har ingenting å si. Det er bare høyden på notehodet som teller.</p>',
               visuell: { type: 'noter', noter: [{ pos: 2 }, { pos: 5, tilstand: 'hl' }], spill: true, bredde: 260 } },
             { tekst: '<p>Les alltid fra <b>venstre mot høyre</b>, som en tekst. Her går melodien først opp (1 → 2), så ned igjen (2 → 3).</p>',
               visuell: { type: 'noter', noter: [{ pos: 3 }, { pos: 6 }, { pos: 1 }], spill: true, bredde: 340 } },
-            { tekst: '<p>Står to noter <b>like høyt</b>, er det samme tone. Går de mange plasser opp, er sprang større. Her: samme tone to ganger, så et lite steg opp, så et stort sprang opp.</p>',
+            { tekst: '<p>Står to noter <b>like høyt</b>, er det samme tone. Går de mange plasser opp, er det et stort sprang; én plass er et lite steg. Her: samme tone to ganger, så et lite steg opp, så et stort sprang opp.</p>',
               visuell: { type: 'noter', noter: [{ pos: 2 }, { pos: 2 }, { pos: 3 }, { pos: 7 }], spill: true, bredde: 420 } }
           ]
         },

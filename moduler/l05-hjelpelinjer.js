@@ -10,7 +10,9 @@ Leksjoner.registrer({
     function blandet(lister) { return Oppgaver.blande([].concat.apply([], lister)); }
     function bokst(p) { return Noter.bokstav(p, c.clef); }
     const utenfor = [-4, -3, -2, -1, 9, 10, 11, 12];
+    const naer = [-2, -1, 9, 10];   // første hjelpelinje og mellomrommet før
     function navnUtenfor(n) { return G.navnPos(Oppgaver.blande(utenfor).slice(0, n), c.clef); }
+    function navnNaer(n) { return G.navnPos(Oppgaver.blande(naer).slice(0, n), c.clef); }
     function midtreC() {
       const p = Noter.toneTilPos('C', 4, c.clef);
       return {
@@ -21,8 +23,8 @@ Leksjoner.registrer({
     }
 
     const alleUtenfor = [-4, -3, -2, -1, 9, 10, 11, 12].map(function (p) { return { pos: p, label: bokst(p) }; });
-    const nedenfor = alleUtenfor.filter(function (x) { return x.pos < 0; });
-    const ovenfor = alleUtenfor.filter(function (x) { return x.pos > 8; });
+    const nedenfor = alleUtenfor.filter(function (x) { return x.pos < 0 && x.pos >= -2; });
+    const ovenfor = alleUtenfor.filter(function (x) { return x.pos > 8 && x.pos <= 10; });
 
     // eksempel: over systemet
     const vei1 = [8, 9, 10].map(function (p) { return { pos: p, label: bokst(p), tilstand: p === 10 ? 'ok' : 'normal' }; });
@@ -34,7 +36,7 @@ Leksjoner.registrer({
           type: 'info', tittel: 'Når notesystemet ikke rekker',
           html:
             '<p>Notesystemet har bare ni plasser. Barytonen går både høyere og lavere enn det, så systemet forlenges med korte linjer: <span class="begrep">hjelpelinjer</span>. De ser ut som små linjestumper over eller under notehodet.</p>' +
-            '<p>Du teller akkurat som før – ett trinn i alfabetet for hver linje og hvert mellomrom, bare lenger opp eller ned. Under ser du plassene rett under og rett over systemet med navn i din nøkkel (' + Noter.nokkelNavn(c.clef) + ').</p>',
+            '<p>Du teller akkurat som før – ett trinn i alfabetet for hver linje og hvert mellomrom, bare lenger opp eller ned. Under ser du de to første plassene under og over systemet med navn i din nøkkel (' + Noter.nokkelNavn(c.clef) + '). Lenger ut kommer vi tilbake til.</p>',
           visuelle: [{ type: 'flere', liste: [
             { type: 'noter', tittel: 'Under systemet', noter: nedenfor, spill: true, bredde: 380, gap: 56, skala: 0.95 },
             { type: 'noter', tittel: 'Over systemet', noter: ovenfor, spill: true, bredde: 380, gap: 56, skala: 0.95 }
@@ -65,8 +67,20 @@ Leksjoner.registrer({
         },
         {
           type: 'ovelse', modus: 'veiledet', tittel: 'Hjelpelinjer: veiledet',
-          intro: '<p>Du får hint som viser veien fra nærmeste fastpunkt.</p>',
-          oppgaver: [].concat(G.hjelpelinjer(2), navnUtenfor(3), [midtreC()], G.plasser(1, c.clef, -4, 12))
+          intro: '<p>Først bare første hjelpelinje og plassene ved siden av. Du får hint som viser veien fra nærmeste fastpunkt.</p>',
+          oppgaver: [].concat(navnNaer(3), [midtreC()], G.plasser(1, c.clef, -2, 10))
+        },
+        {
+          type: 'info', tittel: 'Enda lenger ut',
+          html:
+            '<p>Noen ganger går melodien enda lenger – to eller flere hjelpelinjer. Metoden er den samme: tell videre fra siste plass du kjenner. Under ser du hele rekken utenfor systemet i din nøkkel.</p>' +
+            '<p>Hjelpelinjer du ikke bruker ofte, trenger du ikke kunne utenat. Du kan alltid telle deg frem.</p>',
+          visuelle: [{ type: 'noter', noter: alleUtenfor, spill: true, bredde: 640, gap: 56, skala: 1.0, steg: 0.4 }]
+        },
+        {
+          type: 'ovelse', modus: 'veiledet', tittel: 'Hjelpelinjer: lenger ut',
+          intro: '<p>Nå også de ytterste plassene. Du får fortsatt hint.</p>',
+          oppgaver: [].concat(G.hjelpelinjer(1), navnUtenfor(3), G.plasser(2, c.clef, -4, 12))
         },
         {
           type: 'ovelse', modus: 'selvstendig', tittel: 'Hjelpelinjer: alene',

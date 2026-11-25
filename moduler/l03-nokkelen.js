@@ -17,7 +17,7 @@ Leksjoner.registrer({
 
     /* --- oppgavegenerator for denne leksjonen --- */
     function annenNokkel(k) { return k === 'G' ? 'F' : 'G'; }
-    function velgNokkel() { return Math.random() < 0.6 ? c.clef : annenNokkel(c.clef); }
+    function velgNokkel() { return Math.random() < 0.85 ? c.clef : annenNokkel(c.clef); }
 
     function hvilkenNokkel() {
       const k = velgNokkel();
@@ -61,7 +61,7 @@ Leksjoner.registrer({
     function hvorforNokkel() {
       return {
         type: 'valg', spm: 'Hva forteller nøkkelen deg?',
-        valg: ['Hvilken tone én bestemt linje har', 'Hvor fort du skal spille', 'Hvor mange slag det er i takten', 'Hvor høyt du skal spille'],
+        valg: ['Hvilken tone én bestemt linje har', 'Hvor fort du skal spille', 'Hvor mange slag det er i takten', 'Hvor sterkt du skal spille'],
         riktig: 0, hint: 'Nøkkelen er et fastpunkt du kan telle fra.',
         forklaring: 'Nøkkelen gir én linje et navn. Derfra teller du deg til alle de andre.'
       };
@@ -81,13 +81,14 @@ Leksjoner.registrer({
           html:
             '<p>Linjene i notesystemet forteller bare om <i>høyere</i> og <i>lavere</i>. For å vite <b>hvilke toner</b> det er, trenger vi et fastpunkt – og det gir <span class="begrep">nøkkelen</span>, tegnet helt til venstre på hver linje.</p>' +
             '<p>Nøkkelen sier: «<i>denne linjen heter G</i>» (eller F). Når du vet navnet på én linje, finner du resten ved å telle. Uten nøkkel kan ikke notene leses.</p>' +
+            '<p>Tenk på det som et kart: nøkkelen er «du er her»-merket. Resten av kartet finner du ved å gå ut fra det.</p>' +
             '<p>Under ser du din nøkkel (<b>' + navn + '</b>). Den rosa linjen er linja nøkkelen markerer.</p>',
           visuelle: [{ type: 'noter', noter: [], markerLinjer: [{ pos: ref, tekst: refB + '-linja', farge: '#e0708f' }], bredde: 360 }]
         },
         {
           type: 'info', tittel: 'To nøkler',
           html:
-            '<p>Det finnes to nøkler du møter som baryton-spiller:</p>' +
+            '<p>Det finnes to nøkler du kan møte som baryton-spiller. Begge er egentlig en pyntet bokstav – nøkkelen <i>er</i> bokstaven den navngir:</p>' +
             '<ul><li><b>G-nøkkelen</b> (også kalt diskantnøkkel): krøllen sirkler rundt <b>2. linje</b>. Linja heter <b>G</b>.</li>' +
             '<li><b>F-nøkkelen</b> (også kalt bassnøkkel): de to prikkene ligger på hver side av <b>4. linje</b>. Linja heter <b>F</b>.</li></ul>',
           visuelle: [{ type: 'flere', liste: [
@@ -95,12 +96,12 @@ Leksjoner.registrer({
             { type: 'noter', tittel: 'F-nøkkel', nokkel: 'F', noter: [], markerLinjer: [{ pos: 6, tekst: 'F', farge: '#e0708f' }], bredde: 280 }
           ] }],
           etter:
-            '<div class="merk">Hvilken nøkkel barytonnotene står i varierer: mange korps bruker <b>G-nøkkel</b> (B-stemt, notert som til trompet), andre <b>F-nøkkel</b>. Du har valgt <b>' + navn + '</b>. Ser notene dine annerledes ut, bytter du under Innstillinger.</div>'
+            '<div class="merk rosa"><b>Finn nøkkelen i din egen notebok:</b> åpne heftet fra korpset og se på første linje. Står det en krøll (G-nøkkel) eller en 9-er med to prikker (F-nøkkel)? Mange korps skriver baryton i <b>G-nøkkel</b>, andre i <b>F-nøkkel</b>. Du har valgt <b>' + navn + '</b>. Stemmer det ikke med heftet ditt, bytter du under Innstillinger – da endrer alt i spillet seg.</div>'
         },
         {
           type: 'info', tittel: 'Samme plass, ulik tone',
           html:
-            '<p>Plasseringen betyr ulike toner i de to nøklene. Midtlinja (3. linje) er <b>H</b> i G-nøkkel, men <b>D</b> i F-nøkkel. Derfor ser du <b>alltid på nøkkelen først</b>.</p>',
+            '<p>Plasseringen betyr ulike toner i de to nøklene. Midtlinja (3. linje) er <b>H</b> i G-nøkkel, men <b>D</b> i F-nøkkel. Derfor ser du <b>alltid på nøkkelen først</b>, selv om du etter hvert gjør det uten å tenke.</p>',
           visuelle: [{ type: 'flere', liste: [
             { type: 'noter', tittel: 'G-nøkkel', nokkel: 'G', noter: [{ pos: 4, label: 'H' }], bredde: 280 },
             { type: 'noter', tittel: 'F-nøkkel', nokkel: 'F', noter: [{ pos: 4, label: 'D' }], bredde: 280 }
