@@ -2,6 +2,7 @@
 const Oppgaver = (function () {
   const Typer = {};
   const Gen = {};
+  const Vis = {};   // ekstra visuelle typer (registreres av andre filer, f.eks. rytme.js)
 
   function $(tag, cls, html) {
     const e = document.createElement(tag);
@@ -77,6 +78,8 @@ const Oppgaver = (function () {
       });
     } else if (spec.type === 'html') {
       boks.innerHTML = spec.html;
+    } else if (Vis[spec.type]) {
+      Vis[spec.type](spec, boks, ctx);
     }
     return boks;
   }
@@ -529,5 +532,5 @@ const Oppgaver = (function () {
     return ut;
   };
 
-  return { Typer: Typer, Gen: Gen, navnHint: navnHint, sti: sti, kjor: kjor, visuell: visuell, blande: blande, rnd: rnd, velg: velg, unike: unike, $: $ };
+  return { Typer: Typer, Gen: Gen, Vis: Vis, navnHint: navnHint, sti: sti, kjor: kjor, visuell: visuell, blande: blande, rnd: rnd, velg: velg, unike: unike, $: $ };
 })();

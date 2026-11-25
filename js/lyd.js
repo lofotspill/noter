@@ -106,6 +106,15 @@ const Lyd = (function () {
       const t = tid == null ? ctx.currentTime : tid;
       tone(sterk ? 100 : 93, t, 0.05, sterk ? 0.14 : 0.09);
     },
+    /* Planlegger toner med presis timing. items: [{t (sek fra start), midi, dur, vol}].
+       Returnerer {perf: tidspunkt for t=0 i performance.now()-tid} eller null om lyd er av. */
+    planlegg(items) {
+      if (!paa || !init()) return null;
+      const t0 = ctx.currentTime + 0.12;
+      items.forEach(function (it) { tone(it.midi, t0 + it.t, it.dur || 0.15, it.vol); });
+      return { perf: performance.now() + (t0 - ctx.currentTime) * 1000 };
+    },
+    erPaa() { return paa; },
     tid() { return init() ? ctx.currentTime : 0; }
   };
   return api;

@@ -177,3 +177,35 @@ details[open] summary { margin-bottom: 10px; }
   .bokstav { width: 44px; height: 48px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+/* ---------- Rytme ---------- */
+.rytmelinje { display: block; margin: 6px auto; }
+.klikkrad, .knapperad { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 6px 0; }
+.klikkrad .liten, .knapperad .liten, .knapperad .primaer { margin: 0; }
+.rytmerad { display: grid; grid-template-columns: 1fr; gap: 10px; max-width: 520px; margin: 10px auto 0; }
+.rytmerad .monster { padding: 10px 6px; }
+.takt-merk { color: var(--hav-m); font-weight: 600; margin-bottom: 4px; }
+
+.puls-boks { margin: 10px 0 4px; }
+.puls-prikker { display: flex; justify-content: center; gap: 14px; margin-bottom: 8px; }
+.puls-prikk { width: 46px; height: 46px; border-radius: 50%; background: var(--hav-l); color: var(--hav-m); display: grid; place-items: center; font-weight: 700; border: 2px solid #cfe1e6; transition: transform .08s, background .08s; }
+.puls-prikk.sterk { border-color: var(--rosa); }
+.puls-prikk.paa { background: var(--rosa); color: #fff; transform: scale(1.18); border-color: var(--rosa); }
+.puls-tekst { text-align: center; margin: 4px 0; }
+.puls-boks + .puls-tekst + input[type=range], .visuell input[type=range] { width: min(380px, 90%); display: block; margin: 8px auto; accent-color: var(--hav); }
+
+.tapp-status { text-align: center; min-height: 1.6em; margin: 8px 0 2px; font-size: 1.05rem; }
+.tapp-pad { display: block; width: min(360px, 100%); height: 96px; margin: 8px auto 0; border-radius: 22px; border: 3px solid var(--hav); background: var(--hav-l); color: var(--hav-m); font-size: 1.2rem; font-weight: 700; cursor: pointer; touch-action: manipulation; user-select: none; transition: background .06s, transform .06s; }
+.tapp-pad:disabled { opacity: .45; cursor: default; }
+.tapp-pad.sterk { border-color: var(--rosa); }
+.tapp-pad.treff { background: var(--rosa); color: #fff; transform: scale(.98); }
+
+.verdibar { max-width: 600px; margin: 8px auto; }
+.vb-rad { display: grid; grid-template-columns: 118px 1fr; gap: 8px; align-items: stretch; margin-bottom: 6px; }
+.vb-navn { text-align: left; font-weight: 650; color: var(--hav-m); align-self: center; font-size: .95rem; line-height: 1.2; }
+.vb-navn small { display: block; font-weight: 400; color: var(--dempet); }
+.vb-rekke { display: flex; gap: 3px; }
+.vb-celle { background: var(--rosa-l); border: 2px solid #f1c5d1; border-radius: 8px; padding: 0; cursor: pointer; min-width: 0; display: grid; place-items: center; height: 74px; overflow: hidden; }
+.vb-celle svg { height: 66px; width: auto; max-width: 100%; }
+.vb-celle.spiller { background: var(--rosa); }
+@media (max-width: 520px) { .vb-rad { grid-template-columns: 82px 1fr; } .vb-navn { font-size: .82rem; } }
